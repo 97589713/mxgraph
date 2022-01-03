@@ -1,0 +1,56 @@
+<!--
+ Copyright (c) 2008 Gaudenz Alder
+-->
+
+<!-- ===================== Project Properties =========================== -->
+
+<project name="mxgraph" default="all" basedir=".">
+
+	<property name="product.name"    value="JGraphX"/>
+	<property name="product.version" value="@MXGRAPH-VERSION@"/>
+	<property name="jgraphx.jar"     value="jgraphx.jar"/>
+
+<!-- ===================== Project Environment =========================== -->
+
+	<property name="source.home"    value="${basedir}/src"/>
+	<property name="example.home"   value="${basedir}/examples"/>
+
+<!-- ==================== Compilation Options ==================== -->
+
+	<property name="compile.debug"       value="false"/>
+	<property name="compile.deprecation" value="false"/>
+	<property name="compile.optimize"    value="true"/>
+
+<!-- ==================== All ==================== -->
+
+	<target name="all" depends="compile"
+		description="Clean up and build the project"/>
+
+<!-- ==================== Clean ==================== -->
+
+	<target name="clean" description="Deletes all generated files and directories">
+    	<delete dir="${basedir}/classes"/>
+	</target>
+
+<!-- ==================== Init ==================== -->
+
+	<target name="init" description="Initializes the build">
+		<tstamp/>
+		<mkdir dir="${basedir}/classes"/>
+	</target>
+
+<!-- ==================== Compile ==================== -->
+
+	<target name="compile" depends="init" description="Compiles the source tree">
+		<javac srcdir="${example.home}"
+			debug="${compile.debug}"
+			deprecation="${compile.deprecation}"
+			optimize="${compile.optimize}"
+			destdir="${basedir}/classes">
+			<classpath>
+				<pathelement path="${basedir}/lib/${jgraphx.jar}"/>
+				<pathelement path="${basedir}/classes"/>
+			</classpath>
+		</javac>
+	</target>
+</project>

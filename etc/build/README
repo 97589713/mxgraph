@@ -1,0 +1,5 @@
+Build Instructions:
+
+1. Update VERSION and Changelog
+2. Tag the version and push
+3. Start from step 5 in vagrant/README.md
